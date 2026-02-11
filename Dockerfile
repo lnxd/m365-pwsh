@@ -4,7 +4,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
     less \
+    gnupg \
+    lsb-release \
   && rm -rf /var/lib/apt/lists/*
+
+# Install Azure CLI
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 RUN useradd -m -u 10001 -s /bin/bash pwsh
 ENV HOME=/home/pwsh
