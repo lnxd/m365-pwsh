@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: m365-pwsh
+  namespace: portal
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: m365-pwsh
+  template:
+    metadata:
+      labels:
+        app: m365-pwsh
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: k3s-nox-1
+      securityContext:
+        fsGroup: 10001
+      containers:
+        - name: pwsh
+          image: 10.1.100.209:5000/m365-pwsh:latest
+          imagePullPolicy: Always
+          env:
+            - name: HOME
+              value: /home/pwsh
+            - name: POWERSHELL_TELEMETRY_OPTOUT
+              value: "1"
+            - name: DOTNET_CLI_TELEMETRY_OPTOUT
+              value: "1"
+          volumeMounts:
+            - name: home
+              mountPath: /home/pwsh
+            - name: work
+              mountPath: /work
+          resources:
+            requests:
+              cpu: 50m
+              memory: 256Mi
+            limits:
+              cpu: "2"
+              memory: 2Gi
+          securityContext:
+            runAsUser: 10001
+            runAsGroup: 10001
+            allowPrivilegeEscalation: false
+      volumes:
+        - name: home
+          persistentVolumeClaim:
+            claimName: m365-pwsh-home
+        - name: work
+          emptyDir: {}

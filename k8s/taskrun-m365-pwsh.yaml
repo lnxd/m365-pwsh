@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1
+kind: TaskRun
+metadata:
+  generateName: build-m365-pwsh-
+  namespace: build-system
+spec:
+  taskRef:
+    name: buildkit-build-push
+  workspaces:
+    - name: source
+      emptyDir: {}
+  params:
+    - name: repo-url
+      value: "https://github.com/lnxd/m365-pwsh.git"
+    - name: repo-revision
+      value: main
+    - name: context-subdir
+      value: "."
+    - name: dockerfile
+      value: Dockerfile
+    - name: image
+      value: "10.1.100.209:5000/m365-pwsh:latest"
