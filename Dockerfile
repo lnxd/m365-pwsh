@@ -33,7 +33,8 @@ RUN pwsh -NoLogo -NoProfile -Command " \
     Install-Module Microsoft.Graph.Reports -RequiredVersion 2.35.1 -Scope AllUsers -Force; \
     Install-Module Microsoft.Graph.Identity.Governance -RequiredVersion 2.35.1 -Scope AllUsers -Force; \
     Install-Module Microsoft.Graph.DirectoryObjects -RequiredVersion 2.35.1 -Scope AllUsers -Force; \
-    Install-Module ExchangeOnlineManagement -RequiredVersion 3.9.2 -Scope AllUsers -Force"
+    Install-Module ExchangeOnlineManagement -RequiredVersion 3.9.2 -Scope AllUsers -Force; \
+    Install-Module PnP.PowerShell -RequiredVersion 3.1.0 -Scope AllUsers -Force"
 
 WORKDIR /work
 RUN chown -R pwsh:pwsh /work

@@ -4,7 +4,7 @@ M365 admin PowerShell container for k3s with persistent MSAL token cache.
 
 ## Purpose
 
-Runs PowerShell 7 with Microsoft.Graph 2.35.1 and ExchangeOnlineManagement 3.9.2 in a k3s pod. Mounts `$HOME` on a Longhorn PVC so device code authentication persists across `kubectl exec` sessions.
+Runs PowerShell 7 with Microsoft.Graph 2.35.1, ExchangeOnlineManagement 3.9.2, and PnP.PowerShell 3.1.0 in a k3s pod. Mounts `$HOME` on a Longhorn PVC so device code authentication persists across `kubectl exec` sessions.
 
 ## Build
 
@@ -36,3 +36,4 @@ ssh lnxd@10.1.100.10 'sudo k3s kubectl exec -it -n portal deploy/m365-pwsh -- pw
 
 - Microsoft.Graph 2.35.1
 - ExchangeOnlineManagement 3.9.2
+- PnP.PowerShell 3.1.0
