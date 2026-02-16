@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     less \
     gnupg \
     lsb-release \
+    xsel \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Azure CLI
